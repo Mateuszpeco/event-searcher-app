@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>User panel</title>
+</head>
+<body>
+<h1>User panel</h1>
+
+<p><b>Logged as (thymeleaf):</b></p>
+<p sec:authentication="name"></p>
+
+<a th:href="@{/event/list}">Show event list</a>
+<a th:href="@{/user/password/change}">Change password</a>
+<a th:href="@{/logout}">Log out</a>
+</body>
+</html>

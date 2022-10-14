@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <title>Event edit</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+<form method="post" th:action="@{/admin/event/update}" th:object="${event}">
+
+  <input type="hidden" th:field="*{id}">
+
+  <label>
+    Name:
+    <input type="text" th:field="*{name}"/>
+  </label>
+
+  <label>
+    City:
+    <input type="text" th:field="*{city}"/>
+  </label>
+
+  <button type="submit" class="btn btn-primary">Edit event</button>
+</form>
+
+<a th:href="@{/admin/event/list}">Return to event list</a>
+
+</body>
+</html>

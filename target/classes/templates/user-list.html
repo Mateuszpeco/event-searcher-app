@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Users list</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th>email</th>
+        <th>Delete user</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"/>
+        <td th:text="${user.username}"/>
+        <td th:text="${user.email}"/>
+        <td th:text="${user.roles}"/>
+        <td> <a th:href="@{/admin/users/delete/{username}/(username=${user.username})}">delete</a></td>
+
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/admin/panel}">Admin panel</a>
+<a th:href="@{/logout}">Log out</a>
+<p><b>Logged as (thymeleaf):</b></p>
+<p sec:authentication="name"></p>
+<p><b>Logged as (backend):</b></p>
+<p th:text="${currentUser}"/>
+</body>
+</html>

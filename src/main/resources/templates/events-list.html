@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Events list</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<h2>Events</h2>
+<label for="city">Filter by city</label>
+<form metod="get" th>
+    <select city="city" id="city" class="form-controll">
+        <option disabled>Please select...</option>
+        <option
+                th:each="event : ${events}"
+                th:value="${event.id}" ;
+                th:text="${event.city}">
+        </option>
+    </select>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+<table class="table table-borderer table-striped" id="event-table">
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.id}"/>
+        <td th:text="${event.name}"/>
+        <td th:text="${event.city}"/>
+        <td>
+            <a th:href="@{/event/{id}/(id=${event.id})}" class="btn btn-info">Details</a>
+            <a th:href="@{/admin/event/delete/{id}/(id=${event.id})}" class="btn btn-info">Delete</a>
+            <a th:href="@{/admin/event/edit/{id}/(id=${event.id})}" class="btn btn-info">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#event-table").DataTable();
+    })
+</script>
+<!--<a th:href="@{/admin/event/create}" class="btn btn-primary">Add new event</a>-->
+<a th:href="@{/user/panel}" class="btn btn-primary">User panel</a>
+<a th:href="@{/admin/panel}" class="btn btn-primary">Admin panel</a>
+<a th:href="@{/logout}" class="btn btn-primary">Log out</a>
+<p><b>Logged as (thymeleaf):</b></p>
+<p sec:authentication="name"></p>
+<p><b>Logged as (backend):</b></p>
+<p th:text="${currentUser}"/>
+</body>
+</html>

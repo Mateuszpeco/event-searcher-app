@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Events details</title>
+</head>
+<body>
+
+<table class="table">
+    <thead>
+    <tr>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <td th:text="${event.id}"/>
+    <td th:text="${event.name}"/>
+    <td th:text="${event.city}"/>
+    </tbody>
+</table>
+
+<a th:href="@{/event/list}">Return to event list</a>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration form</title>
+</head>
+<body>
+<p th:text="${exceptionMessage}" />
+<h1>Registration page</h1>
+<form method="post" th:action="@{/register}" th:object="${emptyUser}">
+
+    <b>Username:</b>
+    <input type="text" th:field="*{username}">
+    <b>Password:</b>
+    <input type="password" th:field="*{password}">
+    <b>Email:</b>
+    <input type="text" th:field="*{email}">
+
+    <button type="submit">Register</button>
+</form>
+
+
+</body>
+</html>

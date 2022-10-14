@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<form method="post" th:action="@{/admin/user/save}" th:object="${newUser}">
+
+    <label>
+        Login:
+        <input type="text" th:field="*{username}"/>
+        <td th:if="${#fields.hasErrors('username')}"th:errors="*{username}"/>
+    </label>
+
+<!--      <label>-->
+<!--        Password:-->
+<!--        <input type="text" th:field="*{password}"/>-->
+<!--        <td th:if="${#fields.hasErrors('password')}"th:errors="*{password}"/>-->
+<!--      </label>-->
+
+    <label>
+        Role:
+        <input type="text" th:field="*{roles}"/>
+        <td th:if="${#fields.hasErrors('roles')}"th:errors="*{roles}"/>
+    </label>
+
+    <label>
+        Email:
+        <input type="text" th:field="*{email}"/>
+        <td th:if="${#fields.hasErrors('email')}"th:errors="*{email}"/>
+    </label>
+
+    <button type="submit">Add new user</button>
+</form>
+<a th:href="@{/users/list}">Return to users list</a>
+<p><b>Logged as (thymeleaf):</b></p>
+<p sec:authentication="name"></p>
+</body>
+</html>
